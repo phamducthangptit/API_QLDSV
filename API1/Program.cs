@@ -13,6 +13,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<QLDSVContext>();
 builder.Services.AddTransient<ITaiKhoanRepository, TaiKhoanRepository>();
 builder.Services.AddTransient<ISinhVienRepository, SinhVienRepository>();
+builder.Services.AddTransient<IAdminRepository, AdminRepository>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

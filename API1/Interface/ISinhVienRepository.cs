@@ -4,13 +4,9 @@ using API1.Models;
 namespace API1.Interface
 {
     public interface ISinhVienRepository
-    {
-        IEnumerable<SinhVien> danhSachSinhVien();
-        IEnumerable<SinhVien> danhSachSinhVienTheoLop(string maLop);
-        SinhVien sinhVienTheoMa(string maSV);
-
-        int thayDoiThongTinSinhVien(string maSV, SinhVienDTO s);
-
+    {  
+        int ThayDoiThongTinSinhVien(string maSV, string email2, string sdt2);
+        SinhVien SinhVienTheoMa(string maSV);
         void Save();
     }
 }

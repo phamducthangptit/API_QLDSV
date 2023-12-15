@@ -4,19 +4,19 @@ namespace API1.Interface
 {
     public interface ITaiKhoanRepository
     {
-        IEnumerable<TaiKhoan> danhSachTaiKhoan();
+        IEnumerable<TaiKhoan> DanhSachTaiKhoan();
 
-        IEnumerable<TaiKhoan> danhSachTaiKhoanSinhVien();
+        IEnumerable<TaiKhoan> DanhSachTaiKhoanSinhVien();
 
-        IEnumerable<TaiKhoan> danhSachTaiKhoanGiangVien();
+        IEnumerable<TaiKhoan> DanhSachTaiKhoanGiangVien();
 
-        IEnumerable<TaiKhoan> danhSachTaiKhoanAdmin();
+        IEnumerable<TaiKhoan> DanhSachTaiKhoanAdmin();
 
-        TaiKhoan taiKhoanTheoTenDN(string tenDN);
-        int capNhatTrangThaiTaiKhoan(string tenDN);
-        int thayDoiMatKhau(string tenDN, string matKhauMoi);
+        TaiKhoan TaiKhoanTheoTenDN(string tenDN);
+        int CapNhatTrangThaiTaiKhoan(string tenDN);
+        int ThayDoiMatKhau(string tenDN, string matKhauMoi);
 
-        int xoaTaiKhoan(string tenDN);
+        int XoaTaiKhoan(string tenDN);
 
         void Save();
     }

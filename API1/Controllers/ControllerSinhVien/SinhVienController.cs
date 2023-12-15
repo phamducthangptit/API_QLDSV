@@ -15,33 +15,19 @@ namespace API1.Controllers.ControllerSinhVien
             _sinhVienRepository = sinhVienRepository;
         }
 
-        [HttpGet("danh-sach-sinh-vien")]
-        public IActionResult danhSachSinhVien()
-        {
-            var danhSachSinhVien = _sinhVienRepository.danhSachSinhVien();
-            return Ok(danhSachSinhVien);
-        }
-
-        [HttpGet("danh-sach-sinh-vien-theo-lop/{maLop}")]
-        public IActionResult danhSachSinhVienTheoLop(string maLop)
-        {
-            var danhSachSinhVienTheoLop = _sinhVienRepository.danhSachSinhVienTheoLop(maLop);
-            return Ok(danhSachSinhVienTheoLop);
-        }
-
         [HttpGet("sinh-vien-theo-ma/{maSV}")]
-        public IActionResult sinhVienTheoMa(string maSV)
+        public IActionResult SinhVienTheoMa(string maSV)
         {
-            var sinhVien = _sinhVienRepository.sinhVienTheoMa(maSV);
+            var sinhVien = _sinhVienRepository.SinhVienTheoMa(maSV);
             if(sinhVien != null)
                 return Ok(sinhVien);
             return BadRequest();
         }
 
         [HttpPut("thay-doi-thong-tin-sinh-vien/{maSV}")]
-        public IActionResult thayDoiThongTinSV(string maSV, SinhVienDTO s)
+        public IActionResult ThayDoiThongTinSV(string maSV, string email2, string sdt2)
         {
-            if(_sinhVienRepository.thayDoiThongTinSinhVien(maSV, s) == 1)
+            if(_sinhVienRepository.ThayDoiThongTinSinhVien(maSV, email2, sdt2) == 1)
             {
                 return Ok();
             }

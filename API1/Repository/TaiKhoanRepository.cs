@@ -12,9 +12,9 @@ namespace API1.Repository
             _context = context;
         }
 
-        public int capNhatTrangThaiTaiKhoan(string tenDN)
+        public int CapNhatTrangThaiTaiKhoan(string tenDN)
         {
-            TaiKhoan taiKhoan = taiKhoanTheoTenDN(tenDN);
+            TaiKhoan taiKhoan = TaiKhoanTheoTenDN(tenDN);
             if(taiKhoan != null)
             {
                 if (taiKhoan.TrangThai == 1)
@@ -33,25 +33,25 @@ namespace API1.Repository
             
         }
 
-        public IEnumerable<TaiKhoan> danhSachTaiKhoan()
+        public IEnumerable<TaiKhoan> DanhSachTaiKhoan()
         {
             var danhSachTaiKhoan = _context.TaiKhoans.ToList();
             return danhSachTaiKhoan;
         }
 
-        public IEnumerable<TaiKhoan> danhSachTaiKhoanAdmin()
+        public IEnumerable<TaiKhoan> DanhSachTaiKhoanAdmin()
         {
             var danhSachTaiKhoanAdmin = _context.TaiKhoans.Where(tk => tk.MaRole == 1).ToList();
             return danhSachTaiKhoanAdmin;
         }
 
-        public IEnumerable<TaiKhoan> danhSachTaiKhoanGiangVien()
+        public IEnumerable<TaiKhoan> DanhSachTaiKhoanGiangVien()
         {
             var danhSachTaiKhoanGiangVien = _context.TaiKhoans.Where(tk => tk.MaRole == 2).ToList();
             return danhSachTaiKhoanGiangVien;
         }
 
-        public IEnumerable<TaiKhoan> danhSachTaiKhoanSinhVien()
+        public IEnumerable<TaiKhoan> DanhSachTaiKhoanSinhVien()
         {
             var danhSachTaiKhoanSinhVien = _context.TaiKhoans.Where(tk => tk.MaRole == 3).ToList();
             return danhSachTaiKhoanSinhVien;
@@ -62,15 +62,15 @@ namespace API1.Repository
             _context.SaveChanges();
         }
 
-        public TaiKhoan taiKhoanTheoTenDN(string tenDN)
+        public TaiKhoan TaiKhoanTheoTenDN(string tenDN)
         {
             var taiKhoan = _context.TaiKhoans.FirstOrDefault(tk => tk.TenDn.Equals(tenDN));
             return taiKhoan;
         }
 
-        public int thayDoiMatKhau(string tenDN, string matKhauMoi)
+        public int ThayDoiMatKhau(string tenDN, string matKhauMoi)
         {
-            TaiKhoan taiKhoan = taiKhoanTheoTenDN(tenDN);
+            TaiKhoan taiKhoan = TaiKhoanTheoTenDN(tenDN);
             if(taiKhoan == null)
             {
                 return 0;
@@ -83,9 +83,9 @@ namespace API1.Repository
             }
         }
 
-        public int xoaTaiKhoan(string tenDN)
+        public int XoaTaiKhoan(string tenDN)
         {
-            TaiKhoan taiKhoan = taiKhoanTheoTenDN(tenDN);
+            TaiKhoan taiKhoan = TaiKhoanTheoTenDN(tenDN);
             if(taiKhoan != null)
             {
                 _context.Remove(taiKhoan);
