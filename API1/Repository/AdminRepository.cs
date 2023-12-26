@@ -169,5 +169,66 @@ namespace API1.Repository
                 return 0;
             }
         }
+
+        public int XoaSinhVien(string maSV)
+        {
+            var svHocLTC = _context.SvHocLopTinChis.FirstOrDefault(sv => sv.MaSv.Equals(maSV));
+            if(svHocLTC  == null) // Sinh viên chưa đki học lần nào thì có thể xóa được
+            {
+                SinhVien sinhVien = SinhVienTheoMa(maSV);
+                if(sinhVien != null)
+                {
+                    _context.SinhViens.Remove(sinhVien); // xóa sinh viên trước
+                    _context.TaiKhoans.Remove(TaiKhoanTheoTenDN(maSV)); // sau đó xóa tài khoản của sinh viên đó
+                    Save();
+                    return 1;
+                }
+                return 0;
+            }
+            return 0;
+        }
+
+        public int XoaGiangVien(string maGV)
+        {
+            var ctLTC = _context.CtLopTinChis.FirstOrDefault(ct => ct.MaGv.Equals(maGV));
+            if(ctLTC == null) // giảng viên chưa dạy lần nào thì có thể xóa
+            {
+                GiangVien giangVien = GiangVienTheoMa(maGV);
+                if(giangVien != null)
+                {
+                    _context.GiangViens.Remove(giangVien); // xóa giảng viên trước
+                    _context.TaiKhoans.Remove(TaiKhoanTheoTenDN(maGV)); // xóa tài khoản của gv đó
+                    Save();
+                    return 1;
+                }
+                return 0;
+            }
+            return 0;
+        }
+
+        public int XoaAdmin(string maNQT)
+        {
+            var svHocLTC = _context.SvHocLopTinChis.FirstOrDefault(svhltc => svhltc.MaNguoiQt.Equals(maNQT));
+            if(svHocLTC == null) // người quản trị chưa tạo lớp học nào thì có thể xóa
+            {
+                NguoiQt nguoiQt = AdminTheoMa(maNQT);
+                if(nguoiQt != null)
+                {
+                    _context.NguoiQts.Remove(nguoiQt); // xóa admin trước
+                    _context.TaiKhoans.Remove(TaiKhoanTheoTenDN(maNQT)); // xóa tài khoản
+                    Save();
+                    return 1;
+                }
+                return 0;
+                
+            }
+            return 0;
+        }
+
+        public TaiKhoan TaiKhoanTheoTenDN(string tenDN)
+        {
+            var taiKhoan = _context.TaiKhoans.SingleOrDefault(tk => tk.TenDn.Equals(tenDN));
+            return taiKhoan;
+        }
     }
 }

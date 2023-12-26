@@ -67,13 +67,5 @@ namespace API1.Controllers.ControllerTaiKhoan
                 return Ok();
             return BadRequest();
         }
-
-        [HttpDelete("xoa-tai-khoan/{tenDN}")]
-        public IActionResult xoaTaiKhoan(string tenDN)
-        {
-            if(_taiKhoanRepository.XoaTaiKhoan(tenDN) == 1)
-                return Ok();
-            return BadRequest();
-        }
     }
 }

@@ -73,5 +73,35 @@ namespace API1.Controllers.ControllerAdmin
             }
             return BadRequest();
         }
+
+        [HttpDelete("xoa-sinh-vien/{maSv}")]
+        public IActionResult XoaSinhVien(string maSv)
+        {
+            if(_adminRepository.XoaSinhVien(maSv) == 1)
+            {
+                return Ok();
+            }
+            return BadRequest();
+        }
+
+        [HttpDelete("xoa-giang-vien/{maGv}")]
+        public IActionResult XoaGiangVien(string maGv)
+        {
+            if(_adminRepository.XoaGiangVien(maGv) == 1)
+            {
+                return Ok();
+            }
+            return BadRequest();
+        }
+
+        [HttpDelete("xoa-nguoi-quan-tri/{maNQT}")]
+        public IActionResult XoaAdmin(string maNQT)
+        {
+            if(_adminRepository.XoaAdmin(maNQT) == 1)
+            {
+                return Ok();
+            }
+            return BadRequest();
+        }
     }
 }

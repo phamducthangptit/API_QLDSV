@@ -16,8 +16,6 @@ namespace API1.Interface
         int CapNhatTrangThaiTaiKhoan(string tenDN);
         int ThayDoiMatKhau(string tenDN, string matKhauMoi);
 
-        int XoaTaiKhoan(string tenDN);
-
         void Save();
     }
 }

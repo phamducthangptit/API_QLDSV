@@ -82,17 +82,5 @@ namespace API1.Repository
                 return 1;
             }
         }
-
-        public int XoaTaiKhoan(string tenDN)
-        {
-            TaiKhoan taiKhoan = TaiKhoanTheoTenDN(tenDN);
-            if(taiKhoan != null)
-            {
-                _context.Remove(taiKhoan);
-                Save();
-                return 1;
-            }
-            return 0;
-        }
     }
 }
