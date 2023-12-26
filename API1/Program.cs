@@ -1,6 +1,7 @@
 using API1.Data;
 using API1.Interface;
 using API1.Repository;
+using API1.VnPay.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +15,7 @@ builder.Services.AddDbContext<QLDSVContext>();
 builder.Services.AddTransient<ITaiKhoanRepository, TaiKhoanRepository>();
 builder.Services.AddTransient<ISinhVienRepository, SinhVienRepository>();
 builder.Services.AddTransient<IAdminRepository, AdminRepository>();
+builder.Services.AddSingleton<IVnPayServices, VnPayService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
