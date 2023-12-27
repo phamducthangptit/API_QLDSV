@@ -10,7 +10,7 @@ namespace API1.VnPay.Services
 
         public VnPayService(IConfiguration config) 
         {
-            config = _config;
+            _config = config;
         }
 
         public string CreatePaymentUrl(HttpContext context, VnPaymentRequestModel model)
@@ -20,7 +20,8 @@ namespace API1.VnPay.Services
             vnpay.AddRequestData("vnp_Version", _config["VnPay:Version"]);
             vnpay.AddRequestData("vnp_Command", _config["VnPay:Command"]);
             vnpay.AddRequestData("vnp_TmnCode", _config["VnPay:TmnCode"]);
-            vnpay.AddRequestData("vnp_Amount", (model.Amount * 100).ToString()); //Số tiền thanh toán. Số tiền không 
+            vnpay.AddRequestData("vnp_Amount", (model.Amount * 100).ToString()); 
+            //Số tiền thanh toán. Số tiền không 
             // mang các ký tự phân tách thập phân, phần nghìn, ký tự tiền tệ. Để gửi số tiền thanh toán là 100,000 VND
             // (một trăm nghìn VNĐ) thì merchant cần nhân thêm 100 lần(khử phần thập phân), sau đó gửi sang VNPAY
             // là: 10000000
@@ -51,7 +52,7 @@ namespace API1.VnPay.Services
                     vnpay.AddResponseData(item.Key, item.Value.ToString());
                 }
             }
-            var vnp_OrderId = Convert.ToInt64(vnpay.GetResponseData("vnp_TxnRef"));
+            var vnp_OrderId = vnpay.GetResponseData("vnp_TxnRef");
             var vnp_TransactionId = Convert.ToInt64(vnpay.GetResponseData("vnp_TransactionNo"));
             var vnp_SecureHash = collection.FirstOrDefault(p => p.Key == "vnp_SecureHash").Value;
             var vnp_ResponseCode = vnpay.GetResponseData("vnp_ResponseCode");

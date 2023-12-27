@@ -230,5 +230,21 @@ namespace API1.Repository
             var taiKhoan = _context.TaiKhoans.SingleOrDefault(tk => tk.TenDn.Equals(tenDN));
             return taiKhoan;
         }
+
+        public int TaoDonHang(ThanhToanVnPayDTO donHang)
+        {
+            ThanhToanVnPay thanhToanVnPay = new ThanhToanVnPay();
+            thanhToanVnPay.Amount = donHang.Amount;
+            thanhToanVnPay.TrangThai = false;
+            _context.Add(thanhToanVnPay);
+            Save();
+            return 1;
+        }
+
+        public IEnumerable<ThanhToanVnPay> DanhSachDonHang()
+        {
+            var danhSachDonHang = _context.ThanhToanVnPays.ToList();
+            return danhSachDonHang;
+        }
     }
 }

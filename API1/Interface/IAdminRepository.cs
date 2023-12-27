@@ -22,6 +22,10 @@ namespace API1.Interface
         int ThemMoiAdmin(NguoiQTDTO Admin);
         int XoaAdmin(string maNQT);
 
+        int TaoDonHang(ThanhToanVnPayDTO donHang);
+
+        IEnumerable<ThanhToanVnPay> DanhSachDonHang();
+
         void Save();
     }
 }

@@ -16,6 +16,13 @@ builder.Services.AddTransient<ITaiKhoanRepository, TaiKhoanRepository>();
 builder.Services.AddTransient<ISinhVienRepository, SinhVienRepository>();
 builder.Services.AddTransient<IAdminRepository, AdminRepository>();
 builder.Services.AddSingleton<IVnPayServices, VnPayService>();
+//builder.Services.AddCors(options =>
+//{
+//    options.AddPolicy("AllowVnPay",
+//        builder => builder.WithOrigins("https://sandbox.vnpayment.vn/paymentv2/vpcpay.html")
+//                          .AllowAnyHeader()
+//                          .AllowAnyMethod());
+//});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

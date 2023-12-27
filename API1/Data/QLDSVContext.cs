@@ -28,11 +28,13 @@ namespace API1.Data
         public virtual DbSet<SinhVien> SinhViens { get; set; } = null!;
         public virtual DbSet<SvHocLopTinChi> SvHocLopTinChis { get; set; } = null!;
         public virtual DbSet<TaiKhoan> TaiKhoans { get; set; } = null!;
+        public virtual DbSet<ThanhToanVnPay> ThanhToanVnPays { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
                 optionsBuilder.UseSqlServer("Server=MSI;Database=QLDSV;Trusted_Connection=True;");
             }
         }
@@ -400,6 +402,11 @@ namespace API1.Data
                     .HasForeignKey(d => d.MaRole)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_TaiKhoan_Role");
+            });
+
+            modelBuilder.Entity<ThanhToanVnPay>(entity =>
+            {
+                entity.ToTable("ThanhToanVnPay");
             });
 
             OnModelCreatingPartial(modelBuilder);

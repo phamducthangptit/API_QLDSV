@@ -103,5 +103,19 @@ namespace API1.Controllers.ControllerAdmin
             }
             return BadRequest();
         }
+
+        [HttpPost("tao-don-hang")]
+        public IActionResult TaoDonHangMoi(ThanhToanVnPayDTO donHang)
+        {
+            _adminRepository.TaoDonHang(donHang);
+            return Ok();
+        }
+
+        [HttpGet("danh-sach-don-hang")]
+        public IActionResult DanhSachDonHang()
+        {
+            var danhSachDonHang = _adminRepository.DanhSachDonHang();
+            return Ok(danhSachDonHang);
+        }
     }
 }
